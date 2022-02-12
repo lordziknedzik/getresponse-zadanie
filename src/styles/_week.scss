@@ -1,0 +1,195 @@
+.week {
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr;
+  grid-template-rows: $baseThumb * 3;
+  width: 100%;
+  user-select: none;
+
+  &--changeWeekButton {
+    @include flexCC;
+    border: 1px solid $tertiaryColor;
+    border-radius: 3px;
+    cursor: pointer;
+    height: $baseThumb * 1.25;
+    width: $baseThumb * 0.66;
+    transition-duration: $standardAnimationDuration;
+
+    &__inactive {
+      background-color: $darkGreyhover;
+      cursor: auto;
+    }
+    &:hover {
+      background-color: $darkGreyhover;
+    }
+  }
+
+  &--circle {
+    border-radius: 50%;
+    cursor: pointer;
+    width: $baseThumb * 0.33;
+    height: $baseThumb * 0.33;
+    margin-right: $baseThumb * 0.25;
+    background-color: $secondaryColor;
+    position: relative;
+
+    &__current {
+      background-color: white !important;
+      border: 2px solid $darkGrey;
+    }
+
+    &__future {
+      background-color: $tertiaryColor;
+    }
+
+    &__withConnector {
+      @include connectorStyles;
+      &::after {
+        background-color: $secondaryColor;
+      }
+
+      &Inactive {
+        &::after {
+          background-color: $tertiaryColor;
+        }
+      }
+    }
+  }
+
+  &--container {
+    @include flexCC;
+    flex-direction: column;
+  }
+
+  &--daySlider {
+    @include flexCC;
+    display: none !important;
+  }
+
+  &--progressText {
+    color: $darkGrey;
+    text-align: left;
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  &--proteins {
+    margin: $standardElementMargin 0;
+    width: 100%;
+    height: $baseThumb;
+    display: flex;
+    gap: $baseThumb * 0.5;
+  }
+
+  &--step {
+    margin: $standardElementMargin;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &--stepper {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  &--slider {
+    @include flexCC;
+    // gap: $baseThumb;
+    width: 100%;
+  }
+
+  &--weekNumber {
+    @include flexCC;
+    min-width: 300px;
+  }
+
+  @media only screen and (max-width: 1350px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, $baseThumb * 3);
+
+    grid-template-areas:
+      'progress protein'
+      'weekSlider weekSlider';
+
+    &--progress {
+      grid-area: progress;
+    }
+
+    &--protein {
+      grid-area: protein;
+      justify-self: end;
+    }
+
+    &--slider {
+      grid-area: weekSlider;
+    }
+  }
+
+  @media only screen and (max-width: 850px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, $baseThumb * 3);
+
+    grid-template-areas:
+      'progress'
+      'protein'
+      'weekSlider';
+
+    &--progress {
+      justify-self: center;
+      width: 100%;
+
+      &Text {
+        @include flexCC;
+      }
+    }
+
+    &--protein {
+      justify-self: center;
+      width: 100%;
+    }
+
+    &--proteins {
+      @include flexCC;
+    }
+
+    &--stepper {
+      @include flexCC;
+    }
+  }
+
+  @media only screen and (max-width: 750px) {
+    grid-template-rows: repeat(4, $baseThumb * 3);
+    grid-template-areas:
+      'progress'
+      'protein'
+      'weekSlider'
+      'daySlider';
+
+    &--daySlider {
+      display: flex !important;
+      grid-area: daySlider;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    grid-template-rows: repeat(4, $baseThumb * 3);
+    grid-template-areas:
+      'progress'
+      'protein'
+      'weekSlider'
+      'daySlider';
+
+    &--daySlider {
+      display: flex !important;
+      grid-area: daySlider;
+    }
+
+    &--weekNumber {
+      @include flexCC;
+      min-width: 220px;
+    }
+  }
+}

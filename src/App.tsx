@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {ReactElement, useContext} from 'react';
+import {Route, Routes} from 'react-router-dom'
+import Calendar from './pages/Calendar.page';
+import Error from './pages/Error.page';
+import NotLogged from './pages/NotLogged.page';
+import UnderConstruction from './pages/UnderConstruction.page';
+import User from './pages/User.page';
+import Header from './components/Header.component';
+import BotNav from './components/BotNav.component';
+import './styles/index.scss'
+import {UserContext} from './contexts/UserProvider.contexts'
+import { DietContext } from './contexts/DietProvider.contexts';
 
-function App() {
+
+const App = ():ReactElement => {
+
+  const {isLogged} = useContext(UserContext)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+      <div className="app">
+        <Header />
+
+        {!isLogged && <NotLogged />}
+
+        {isLogged && 
+          <Routes>
+            <Route path='/' element={<Calendar />}/>
+            <Route path='/user' element={<User />}/>
+            <Route path='/login' element={<NotLogged />} />
+            <Route path='/*' element={<UnderConstruction />}/>
+          </Routes>
+        }
+        <BotNav />
+      </div>
+
   );
 }
 

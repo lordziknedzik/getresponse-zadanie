@@ -1,0 +1,50 @@
+@mixin flexCC {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin pageSettings {
+  max-width: $maxPageWidth;
+  padding: 0 10%;
+  width: 100%;
+
+  @media only screen and (max-width: 1500px) {
+    padding: 0 5%;
+  }
+
+  @media only screen and (max-width: 850px) {
+    padding: 0 10px;
+  }
+}
+
+@mixin borderSettings {
+  box-shadow: 0px 6px 4px -5px $grey;
+}
+
+@mixin elementUnderline {
+  &::after {
+    background-color: transparent;
+    bottom: -10px;
+    content: '';
+    display: block;
+    height: 2px;
+    left: 40%;
+    position: absolute;
+    transition-duration: $standardAnimationDuration;
+    width: 20%;
+  }
+}
+
+@mixin connectorStyles {
+  &::after {
+    cursor: auto;
+    position: absolute;
+    content: '';
+    width: $baseThumb * 0.33;
+    background-color: $secondaryColor;
+    height: 4px;
+    top: calc(50% - 2px);
+    right: -$baseThumb * 0.33;
+  }
+}

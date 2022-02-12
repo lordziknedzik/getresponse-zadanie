@@ -1,0 +1,429 @@
+.diet {
+  display: grid;
+  grid-template-areas:
+    'TimeEmpty DAY1 DAY2 DAY3 DAY4 DAY5 DAY6 DAY7'
+    'Time6AM DAY16AM DAY26AM DAY36AM DAY46AM DAY56AM DAY66AM DAY7TEXT'
+    'Time9AM DAY19AM DAY29AM DAY39AM DAY49AM DAY59AM DAY69AM DAY7TEXT'
+    'Time12PM DAY112PM DAY212PM DAY312PM DAY412PM DAY512PM DAY612PM DAY7TEXT'
+    'Time3PM DAY13PM DAY23PM DAY33PM DAY43PM DAY53PM DAY63PM DAY7TEXT'
+    'Time6PM DAY16PM DAY26PM DAY36PM DAY46PM DAY56PM DAY66PM DAY7TEXT'
+    'carb DAY1carb DAY2carb DAY3carb DAY4carb DAY5carb DAY6carb print'
+    'workout DAY1workout DAY2workout DAY3workout DAY4workout DAY5workout DAY6workout print';
+
+  grid-template-columns: 80px repeat(7, 1fr);
+  grid-template-rows: $baseThumb * 2 $baseThumb * 3 $baseThumb * 3 $baseThumb * 3 $baseThumb * 3 $baseThumb * 3 $baseThumb $baseThumb;
+  margin: 0 auto 2 * $baseThumb auto;
+
+  &--barbell {
+    cursor: pointer;
+  }
+
+  &--carbCell {
+    grid-area: carb;
+  }
+
+  &--checkIcon {
+    position: absolute;
+    right: 25%;
+  }
+
+  &--container {
+    position: relative;
+  }
+
+  &--day7 {
+    @include flexCC;
+    background-color: white;
+    border-bottom: $tableBorder;
+    border-top: $tableBorder;
+    flex-direction: column;
+    grid-area: DAY7TEXT;
+
+    &Text {
+      text-transform: uppercase;
+      transform: rotate(-90deg) translate(-100px, 0);
+      white-space: nowrap;
+      margin: calc($baseThumb + 150px) 0;
+      max-width: 200px;
+    }
+  }
+
+  &--foodCheckedIcon {
+    position: absolute;
+    top: -10px;
+    left: -$baseThumb * 1.5;
+  }
+
+  &--print {
+    @include flexCC;
+    background-color: $grey;
+    gap: $baseThumb * 0.25;
+    grid-area: print;
+  }
+
+  &--rowTitlecell {
+    background-color: $grey;
+  }
+
+  &--workout {
+    @include flexCC;
+    background-color: $grey;
+    position: relative;
+  }
+
+  &--workoutRow {
+    grid-area: workout;
+    @include flexCC;
+    background-color: $grey;
+  }
+
+  @media only screen and (max-width: 1500px) {
+    grid-template-areas:
+      'TimeEmpty DAY1 DAY2 DAY3 DAY4 DAY5 DAY6'
+      'Time6AM DAY16AM DAY26AM DAY36AM DAY46AM DAY56AM DAY66AM'
+      'Time9AM DAY19AM DAY29AM DAY39AM DAY49AM DAY59AM DAY69AM'
+      'Time12PM DAY112PM DAY212PM DAY312PM DAY412PM DAY512PM DAY612PM '
+      'Time3PM DAY13PM DAY23PM DAY33PM DAY43PM DAY53PM DAY63PM '
+      'Time6PM DAY16PM DAY26PM DAY36PM DAY46PM DAY56PM DAY66PM'
+      'carb DAY1carb DAY2carb DAY3carb DAY4carb DAY5carb DAY6carb'
+      'workout DAY1workout DAY2workout DAY3workout DAY4workout DAY5workout DAY6workout';
+
+    grid-template-columns: 80px repeat(6, minmax(180px, 1fr));
+
+    &--day7 {
+      display: none;
+    }
+    &--print {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 1250px) {
+    &--foodCheckedIcon {
+      top: -$baseThumb;
+      left: -$baseThumb * 1.25;
+    }
+  }
+  @media only screen and (max-width: 1250px) {
+    grid-template-columns: 80px repeat(6, minmax(160px, 1fr));
+  }
+  @media only screen and (max-width: 1150px) {
+    grid-template-columns: 80px repeat(6, minmax(140px, 1fr));
+  }
+  @media only screen and (max-width: 1050px) {
+    grid-template-columns: 80px repeat(6, minmax(120px, 1fr));
+  }
+  @media only screen and (max-width: 1050px) {
+    grid-template-columns: 80px repeat(6, minmax(100px, 1fr));
+  }
+
+  @media only screen and (max-width: 850px) {
+    &--checkIcon {
+      position: absolute;
+      right: 10%;
+    }
+  }
+
+  @media only screen and (max-width: 750px) {
+    grid-template-areas:
+      'TimeEmpty DAYSMALL'
+      'Time6AM DAYSMALL6AM'
+      'Time9AM DAYSMALL9AM'
+      'Time12PM DAYSMALL12PM'
+      'Time3PM DAYSMALL3PM'
+      'Time6PM DAYSMALL6PM'
+      'carb DAYSMALLcarb'
+      'workout DAYSMALLworkout';
+
+    grid-template-columns: 80px 250px;
+  }
+}
+
+.day {
+  &--header {
+    @include flexCC;
+    background-color: white;
+    border-left: $tableBorder;
+    padding: $baseThumb * 0.25;
+    color: $secondaryColor;
+    text-transform: uppercase;
+  }
+
+  &--1 {
+    grid-area: DAY1;
+    &carb {
+      grid-area: DAY1carb;
+    }
+    &workout {
+      grid-area: DAY1workout;
+    }
+  }
+  &--2 {
+    grid-area: DAY2;
+    &carb {
+      grid-area: DAY2carb;
+    }
+    &workout {
+      grid-area: DAY2workout;
+    }
+  }
+  &--3 {
+    grid-area: DAY3;
+    &carb {
+      grid-area: DAY3carb;
+    }
+    &workout {
+      grid-area: DAY3workout;
+    }
+  }
+  &--4 {
+    grid-area: DAY4;
+    &carb {
+      grid-area: DAY4carb;
+    }
+    &workout {
+      grid-area: DAY4workout;
+    }
+  }
+  &--5 {
+    grid-area: DAY5;
+    &carb {
+      grid-area: DAY5carb;
+    }
+    &workout {
+      grid-area: DAY5workout;
+    }
+  }
+  &--6 {
+    grid-area: DAY6;
+    &carb {
+      grid-area: DAY6carb;
+    }
+    &workout {
+      grid-area: DAY6workout;
+    }
+  }
+  &--7 {
+    grid-area: DAY7;
+  }
+
+  &--cell {
+    display: flex;
+    padding: $baseThumb * 0.5;
+    padding-right: $baseThumb;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: white;
+    border: $tableBorder;
+    border-left: none;
+  }
+
+  &--diet {
+    &__D1H6AM {
+      grid-area: DAY16AM;
+    }
+    &__D1H9AM {
+      grid-area: DAY19AM;
+    }
+    &__D1H12PM {
+      grid-area: DAY112PM;
+    }
+    &__D1H3PM {
+      grid-area: DAY13PM;
+    }
+    &__D1H6PM {
+      grid-area: DAY16PM;
+    }
+    &__D2H6AM {
+      grid-area: DAY26AM;
+    }
+    &__D2H9AM {
+      grid-area: DAY29AM;
+    }
+    &__D2H12PM {
+      grid-area: DAY212PM;
+    }
+    &__D2H3PM {
+      grid-area: DAY23PM;
+    }
+
+    &__D2H6PM {
+      grid-area: DAY26PM;
+    }
+    &__D3H6PM {
+      grid-area: DAY36PM;
+    }
+    &__D3H6AM {
+      grid-area: DAY36AM;
+    }
+    &__D3H9AM {
+      grid-area: DAY39AM;
+    }
+    &__D3H12PM {
+      grid-area: DAY312PM;
+    }
+    &__D3H3PM {
+      grid-area: DAY33PM;
+    }
+    &__D3H6PM {
+      grid-area: DAY36PM;
+    }
+    &__D4H6AM {
+      grid-area: DAY46AM;
+    }
+    &__D4H9AM {
+      grid-area: DAY49AM;
+    }
+    &__D4H12PM {
+      grid-area: DAY412PM;
+    }
+    &__D4H3PM {
+      grid-area: DAY43PM;
+    }
+    &__D4H6PM {
+      grid-area: DAY46PM;
+    }
+    &__D5H6AM {
+      grid-area: DAY56AM;
+    }
+    &__D5H9AM {
+      grid-area: DAY59AM;
+    }
+    &__D5H12PM {
+      grid-area: DAY512PM;
+    }
+    &__D5H3PM {
+      grid-area: DAY53PM;
+    }
+    &__D5H6PM {
+      grid-area: DAY56PM;
+    }
+    &__D6H6AM {
+      grid-area: DAY66AM;
+    }
+    &__D6H9AM {
+      grid-area: DAY69AM;
+    }
+    &__D6H12PM {
+      grid-area: DAY612PM;
+    }
+    &__D6H3PM {
+      grid-area: DAY63PM;
+    }
+    &__D6H6PM {
+      grid-area: DAY66PM;
+    }
+  }
+
+  // at the end to overwrite all other styles
+  &--active {
+    &__bottom {
+      border: $tableBorderActiveDay;
+      border-top: $tableBorder;
+    }
+    &__cell {
+      border: $tableBorderActiveDay;
+      border-bottom: $tableBorder;
+      border-top: $tableBorder;
+    }
+
+    &__header {
+      border: $tableBorderActiveDay;
+      color: $primaryColor !important;
+      border-bottom: $tableBorder;
+    }
+  }
+
+  @media only screen and (max-width: 1350px) {
+    &--cell {
+      padding: $baseThumb * 0.25;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    &--7 {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 750px) {
+    &--small {
+      &__dayNumber {
+        grid-area: DAYSMALL;
+      }
+      &__6AM {
+        grid-area: DAYSMALL6AM;
+      }
+      &__9AM {
+        grid-area: DAYSMALL9AM;
+      }
+
+      &__12PM {
+        grid-area: DAYSMALL12PM;
+      }
+      &__3PM {
+        grid-area: DAYSMALL3PM;
+      }
+      &__6PM {
+        grid-area: DAYSMALL6PM;
+      }
+
+      &__header {
+        grid-area: DAYSMALL;
+      }
+
+      &__carb {
+        grid-area: DAYSMALLcarb;
+      }
+
+      &__workout {
+        grid-area: DAYSMALLworkout;
+      }
+      // 'TimeEmpty DAYSMALL'
+      // 'Time6AM DAYSMALL6AM'
+      // 'Time9AM DAYSMALL9AM'
+      // 'Time12PM DAYSMALL12PM'
+      // 'Time3PM DAYSMALL3PM'
+      // 'Time6PM DAYSMALL6PM'
+      // 'carb DAYSMALLcarb'
+      // 'workout DAYSMALLworkout';
+    }
+  }
+}
+
+.time {
+  &--cell {
+    @include flexCC;
+    background-color: $grey;
+    border-bottom: $tableBorderDark;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+
+  &--emptyCell {
+    grid-area: TimeEmpty;
+  }
+  &--6AM {
+    grid-area: Time6AM;
+  }
+  &--9AM {
+    grid-area: Time9AM;
+  }
+  &--12PM {
+    grid-area: Time12PM;
+  }
+  &--3PM {
+    grid-area: Time3PM;
+  }
+  &--6PM {
+    grid-area: Time6PM;
+    border-bottom: none;
+  }
+
+  &--smallMargin {
+    margin: 0 0px 0 5px;
+  }
+}

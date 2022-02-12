@@ -1,0 +1,147 @@
+.global {
+  &--button {
+    @include flexCC;
+    background-color: $grey;
+    border-radius: $standardBorderRadius;
+    border: 1px solid $darkGrey;
+    cursor: pointer;
+    height: $baseThumb;
+    transition-duration: $standardAnimationDuration;
+    user-select: none;
+    width: 100%;
+    max-width: 200px;
+
+    &:hover {
+      color: $primaryColor;
+    }
+
+    &__forLists {
+      @include elementUnderline;
+
+      &::after {
+        background-color: $primaryColor;
+      }
+    }
+  }
+
+  &--clickable {
+    cursor: pointer;
+  }
+
+  &--navButton {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid $darkGrey;
+    border-radius: 10px;
+    color: $darkGrey;
+    gap: 10px;
+    padding: $baseThumb * 0.2;
+    width: 100%;
+    transition-duration: $standardAnimationDuration;
+
+    &:hover {
+      color: $primaryColor;
+    }
+  }
+
+  &--navButtonInside {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    width: 100%;
+  }
+
+  &--paragraph {
+    color: $darkGrey;
+
+    &__bold {
+      font-weight: 800;
+    }
+
+    &__black {
+      color: $black;
+    }
+
+    &__clickable {
+      cursor: pointer;
+    }
+
+    &__large {
+      @include paragraphFontL;
+    }
+
+    &__medium {
+      @include paragraphFontM;
+    }
+
+    &__primaryOnHover {
+      transition-duration: $standardAnimationDuration;
+
+      &:hover {
+        color: $primaryColor;
+      }
+    }
+
+    &__upper {
+      text-transform: uppercase;
+    }
+  }
+
+  &--rotation {
+    cursor: pointer;
+    transition-duration: $standardAnimationDuration;
+
+    &__open {
+      transform: rotate(-90deg);
+    }
+  }
+
+  &--showForSmall {
+    display: none;
+  }
+
+  &--title {
+    &__primary {
+      color: $primaryColor;
+    }
+
+    &__secondary {
+      color: $secondaryColor;
+    }
+
+    &__tertiary {
+      color: $tertiaryColor;
+    }
+
+    &__darkGrey {
+      color: $darkGrey;
+    }
+
+    &__large {
+      @include titleFontL;
+    }
+    &__medium {
+      @include titleFontM;
+    }
+  }
+
+  @media only screen and (max-width: 850px) {
+    &--hideForSmall {
+      display: none !important;
+    }
+
+    &--showForSmall {
+      display: flex;
+    }
+  }
+
+  @media only screen and (max-width: 750px) {
+    &--hideForVerySmall {
+      display: none !important;
+      width: 0px;
+      height: 0px;
+    }
+  }
+}

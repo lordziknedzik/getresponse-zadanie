@@ -1,0 +1,85 @@
+.header {
+  @include flexCC;
+  @include borderSettings;
+  background-color: white;
+  height: 2 * $baseThumb;
+  padding: 0 10%;
+  position: relative;
+  width: 100%;
+
+  &--empty {
+    border-right: 1px solid $grey;
+    height: 100%;
+    width: 15%;
+  }
+
+  &--link {
+    @include elementUnderline;
+    color: $darkGrey;
+    font-weight: 700;
+    padding: $standardPadding;
+    position: relative;
+    text-transform: uppercase;
+    transition-duration: $standardAnimationDuration;
+
+    &:hover {
+      color: $primaryColor;
+
+      &:after {
+        background-color: $primaryColor;
+      }
+    }
+  }
+
+  &--nav {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: flex-start;
+    padding: $standardPadding;
+    width: 60%;
+  }
+
+  &--user {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: $baseThumb;
+    width: 25%;
+
+    &Container {
+      @include flexCC;
+      gap: $baseThumb * 0.25;
+      position: relative;
+    }
+
+    &Login {
+      cursor: pointer;
+    }
+
+    &Options {
+      @include borderSettings;
+      @include flexCC;
+
+      flex-direction: column;
+      gap: $standardElementMargin;
+      left: 0;
+      position: absolute;
+      top: $baseThumb * 1.33;
+      width: 100%;
+    }
+
+    &Img {
+      width: $baseThumb;
+      height: $baseThumb;
+    }
+  }
+
+  @media only screen and (max-width: 850px) {
+    justify-content: space-between;
+    padding: 0 5%;
+    &--empty {
+      display: none;
+    }
+  }
+}
